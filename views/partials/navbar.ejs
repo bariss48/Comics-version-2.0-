@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-light bg" style="background-color: rgb(238, 238, 123)">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/comics">
+      <img src="/img/bang.svg" alt="Brand Image" height="40" width="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/comics">Comics</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/comics/genre/horror">Horror</a></li>
+            <li><a class="dropdown-item" href="/comics/genre/fantastic">Fantastic</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/comics/genre/superhero">Super-hero</a></li>
+          </ul>
+        </li>
+        <% if (user){ %>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/comics/new">Add Comics</a>
+          </li>
+        <% } %>  
+        <% if(user){ %> 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/logout">Log-Out</a>
+        </li>
+      <% }else { %> 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/signup">Sign-Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/login">Log-In</a>
+        </li>
+      <% } %> 
+      </ul>
+      <form class="d-flex" action="/comics/search" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Search" name="term" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="container mt-2">
+    <% if (successMessage && successMessage.length > 0) { %> 
+        <div class="alert alert-success fade show" role="alert">
+            <%= successMessage %> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+  <% } %> 
+  <% if (errorMessage && errorMessage.length > 0) { %> 
+        <div class="alert alert-warning fade show" role="alert">
+            <%= errorMessage %> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+       </div>
+  <% } %> 
+</div>
