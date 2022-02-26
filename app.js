@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const config = require('./config');
+const connect_db = require('./config/db');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
+const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config({ path: './config/config.env' });
 // routers import
 const Comic = require('./models/comic');
 const Comment = require('./models/comment');
@@ -25,10 +28,8 @@ const cookieParser = require('cookie-parser');
 const { application } = require('express');
 const { json } = require('body-parser');
 
-mongoose.connect(config.db.connection, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true});
-mongoose.Promise = global.Promise;
+connect_db();
 
-console.log(config.db.username);
 app.set("view engine","ejs");
 app.use(express.static('public'));
 app.use(express.json({
